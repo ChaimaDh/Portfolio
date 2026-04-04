@@ -1,27 +1,22 @@
-function test(){
-    alert('0_0')
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    var toggleButton = document.querySelector('.toggle-button');
-    var sidebar = document.querySelector('.sidebar');
-    var overlay = document.querySelector('.overlay');
-
-    toggleButton.addEventListener('click', function() {
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('active');
-    });
-
-    overlay.addEventListener('click', function() {
-        sidebar.classList.remove('active');
-        overlay.classList.remove('active');
-    });
-
-    document.addEventListener('click', function(event) {
-        // le5i shil yitifhim hetha bech ki tizil il bara mil side bar yistaka
-        if (!sidebar.contains(event.target) && event.target !== toggleButton) {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        }
-    });
+function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
+function scrollToSection(id) { document.getElementById(id).scrollIntoView(); }
+const text = "CHAIMA";
+let i = 0;
+function typing() { if (i < text.length) { document.getElementById('typing').innerHTML += text.charAt(i); i++; setTimeout(typing, 80); } }
+typing();
+const skills = document.querySelectorAll('.skill-fill');
+skills.forEach(skill => {
+  skill.style.width = skill.getAttribute('data-skill') + '%';
 });
+const faders = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('show');
+  });
+}, { threshold: 0.1 });
+faders.forEach(el => observer.observe(el));
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('formMsg').innerText = "Message sent 💖 (connect EmailJS to make it real)";
+  e.target.reset();
+}
