@@ -17,6 +17,6 @@ const observer = new IntersectionObserver(entries => {
 faders.forEach(el => observer.observe(el));
 function handleSubmit(e) {
   e.preventDefault();
-  document.getElementById('formMsg').innerText = "Message sent 💖 (connect EmailJS to make it real)";
+  document.getElementById('formMsg').innerText = "Message sent 💖";
   e.target.reset();
 }
